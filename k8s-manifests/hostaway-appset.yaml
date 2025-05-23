@@ -8,24 +8,24 @@ spec:
   - git:
       repoURL: https://github.com/aayassen/Hostaway.git
       revision: HEAD
-      files:
-      - path: values/**/values.yaml
+      directories:
+      - path: values/*
   template:
     metadata:
-      name: 'hostaway-{{.path.basename}}'
+      name: hostaway-{{path.basename}}
     spec:
       project: "default"
       source:
         repoURL: 'https://github.com/aayassen/Hostaway.git'
         targetRevision: HEAD
         helm:
-          releaseName: hostaway-'{{.path.basename}}'
+          releaseName: hostaway-{{path.basename}}
           valueFiles: 
-          - 'values/{{.path.basename}}'
+          - values/{{path.basename}}/values.yaml
         path: charts/hostaway
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{.path.basename}}'
+        namespace: '{{path.basename}}'
       syncPolicy:
         automated: 
           selfHeal: true
