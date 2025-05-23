@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: hostaway-app
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/aayassen/Hostaway.git
+      revision: HEAD
+      files:
+      - path: values/**/values.yaml
+  template:
+    metadata:
+      name: 'hostaway-{{.path.basename}}'
+    spec:
+      project: "default"
+      source:
+        repoURL: 'https://github.com/aayassen/Hostaway.git'
+        targetRevision: HEAD
+        helm:
+          releaseName: hostaway-'{{.path.basename}}'
+          valueFiles: 
+          - 'values/{{.path.basename}}'
+        path: charts/hostaway
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.path.basename}}'
+      syncPolicy:
+        automated: 
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
