@@ -1,0 +1,17 @@
+global:
+  domain: argocd.localhost
+server:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hostname: argocd.localhost
+    tls: false
+    hosts:
+      - argocd.localhost
+    paths:
+      - /
+    pathType: Prefix
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  service:
+    type: ClusterIP
