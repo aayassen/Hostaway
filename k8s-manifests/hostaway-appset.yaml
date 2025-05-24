@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/aayassen/Hostaway.git
       revision: HEAD
       directories:
-      - path: values/*
+      - path: charts/hostaway/values/*
   template:
     metadata:
       name: hostaway-{{path.basename}}

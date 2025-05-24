@@ -8,19 +8,17 @@ image:
 podSecurityContext:
   runAsNonRoot: true
   runAsUser: 101
-  fsGroup: 101
 
 securityContext:
   runAsNonRoot: true
   runAsUser: 101
-  fsGroup: 101
 
 service:
   type: ClusterIP
   port: 8080
 
 ingress:
-  enabled: true
+  enabled: false
   className: "nginx"
   annotations:
     kubernetes.io/ingress.class: nginx
