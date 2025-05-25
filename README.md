@@ -54,6 +54,14 @@ In this solution I have initialized a local minikube cluster with a single node 
 ./start.sh
 ```
 
+    the start script will:
+
+    a. create a single node minikube cluster with the name hostaway.
+    b. apply the terraform infrastructure using the created kubeconfig for the hostaway minikube cluster
+    c. build the hostaway app docker images for staging and production environment.
+    d. push the created docker images into the local minikube cluster.
+    e. apply the argocd appset to create staging, production argocd application for the hostaway app using the helm chart
+
 2. port-forward to argocd and you should find that the applications are created.
 
 

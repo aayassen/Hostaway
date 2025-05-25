@@ -56,3 +56,6 @@ fi
 
 echo "You setup is ready ✅ , Please login into the cluster and port-forward to argocd to see the Hostaway applications"
 
+echo "kubectl port-forward svc/argocd-server -n argocd 8080:443"
+echo "initial argocd login credentials are admin: $(kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath='{.data.password}' | base64 --decode)"
+echo "You can access argocd at https://localhost:8080"
