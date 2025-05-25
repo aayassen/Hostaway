@@ -45,7 +45,6 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "applying application set manifest"
-pwd
 kubectl apply -f ./k8s-manifests/hostaway-appset.yaml -n argocd
 
 if [ $? -ne 0 ]; then
